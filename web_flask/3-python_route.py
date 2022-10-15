@@ -19,7 +19,7 @@ def hello_hbnb():
 def hbnb():
 	return "HBNB"
 
-@usrapp.route("/c/<text>", strict_slashes=False)
+@app.route("/c/<text>", strict_slashes=False)
 def c(text):
 	text= text.replace("_", " ")
 	return "C {}".format(text)
