@@ -20,8 +20,9 @@ def hbnb():
 	return "HBNB"
 
 @app.route("/c/<text>", strict_slashes=False)
-def ctext():
-	return "User %s" % escape(text)
+def c(text):
+	text= text.replace("_", " ")
+	return "C {}".format(text)
 
 
 if __name__ == "__main__":
