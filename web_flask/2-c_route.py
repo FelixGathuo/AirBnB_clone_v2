@@ -21,7 +21,7 @@ def hbnb():
 
 @app.route("/c/<text>", strict_slashes=False)
 def ctext():
-return 'User %s' % escape(text)
+	return "User %s" % escape(text)
 
 
 if __name__ == "__main__":
