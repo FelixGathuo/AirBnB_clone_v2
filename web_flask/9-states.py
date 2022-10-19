@@ -7,29 +7,23 @@ Routes:
     /states/<id>: HTML page displaying the given state with <id>.
 """
 from models import storage
+from models import *
 from flask import Flask
 from flask import render_template
-
 app = Flask(__name__)
 
 
 @app.route("/states", strict_slashes=False)
-def states():
+@app.route("/states/<state_id>", strict_slashes=False)
+def states(state_id=None):
     """Displays an HTML page with a list of all States.
 
     States are sorted by name.
     """
     states = storage.all("State")
-    return render_template("9-states.html", state=states)
-
-
-@app.route("/states/<id>", strict_slashes=False)
-def states_id(id):
-    """Displays an HTML page with info about <id>, if it exists."""
-    for state in storage.all("State").values():
-        if state.id == id:
-            return render_template("9-states.html", state=state)
-    return render_template("9-states.html")
+    if state_id is not None:
+    	state_id = 'State.' + state_id
+    return render_template("9-states.html", states=states, state_id=state_id)
 
 
 @app.teardown_appcontext
@@ -39,4 +33,4 @@ def teardown(exc):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port="5000")
